@@ -18,3 +18,4 @@ samples, guidance on mobile development, and a full API reference.
 ## Referências
 
 * https://docs.flame-engine.org/1.5.0/tutorials/bare_flame_game.html
+* https://docs.flame-engine.org/1.5.0/flame/rendering/images.html
