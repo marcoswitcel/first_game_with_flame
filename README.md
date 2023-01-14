@@ -1,6 +1,6 @@
 # first_game_with_flame
 
-Este repositório é um projeto em andamento com o foco em aprender os conceitos e técnicas propostas pela [Flame Engine](https://flame-engine.org/)(Uma biblioteca Dart/Flutter). O objetivo principal é praticar o desenvolvimento de jogos no ambiente mobile, conciderando as diferenças de input (tela touch), e também adquirir prática e familharidade com o linguagem Dart e o framework Flutter, bem como suas ferramentas e ecossistemas. Se no final desse projeto tivermos criado um game mínimo, talvez publiqueo, porém não é o foco principal.
+Este repositório é um projeto em andamento com o foco em aprender os conceitos e técnicas propostas pela [Flame Engine](https://flame-engine.org/)(Uma biblioteca Dart/Flutter). O objetivo principal é praticar o desenvolvimento de jogos no ambiente mobile, conciderando as diferenças de input (tela touch), e também adquirir prática e familharidade com o linguagem Dart e o framework Flutter, bem como suas ferramentas e ecossistemas. Se no final desse projeto tiver criado um game mínimo, talvez publique-o, porém não é o foco principal.
 
 ## Referências
 
