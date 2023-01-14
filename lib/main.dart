@@ -1,12 +1,15 @@
+import 'package:flame/components.dart';
+import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
 import 'package:flame/sprite.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(GameWidget(game: Game()));
 }
 
-class Game extends FlameGame {
+class Game extends FlameGame with KeyboardEvents {
   late Sprite logSprite;
   late SpriteAnimation currentLogAnimation;
 
@@ -14,6 +17,31 @@ class Game extends FlameGame {
   late SpriteAnimation walkUpAnimation;
   late SpriteAnimation walkRightAnimation;
   late SpriteAnimation walkLeftAnimation;
+
+  @override
+  KeyEventResult onKeyEvent(
+    RawKeyEvent event,
+    Set<LogicalKeyboardKey> keysPressed,
+  ) {
+    final isKeyDown = event is RawKeyDownEvent;
+
+    if (!isKeyDown) return KeyEventResult.handled;
+
+    if (keysPressed.contains(LogicalKeyboardKey.arrowDown)) {
+      currentLogAnimation = walkDownAnimation;
+    }
+    if (keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
+      currentLogAnimation = walkUpAnimation;
+    }
+    if (keysPressed.contains(LogicalKeyboardKey.arrowRight)) {
+      currentLogAnimation = walkRightAnimation;
+    }
+    if (keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
+      currentLogAnimation = walkLeftAnimation;
+    }
+
+    return KeyEventResult.handled;
+  }
 
   @override
   Future<void> onLoad() async {
