@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
-import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 
 void main() {
@@ -9,7 +8,7 @@ void main() {
 
 class Game extends FlameGame {
   late Sprite logSprite;
-  // late SpriteAnimation logAnimation;
+  late SpriteAnimation logAnimation;
 
   @override
   Future<void> onLoad() async {
@@ -21,7 +20,10 @@ class Game extends FlameGame {
     );
   }
 
+  @override
   void render(Canvas c) {
+    super.render(c);
+
     // @todo continuar daqui https://docs.flame-engine.org/1.5.0/flame/rendering/images.html
     logSprite.render(c);
   }
