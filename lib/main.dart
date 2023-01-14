@@ -18,6 +18,8 @@ class Game extends FlameGame with KeyboardEvents {
   late SpriteAnimation walkRightAnimation;
   late SpriteAnimation walkLeftAnimation;
 
+  late Vector2 position;
+
   @override
   KeyEventResult onKeyEvent(
     RawKeyEvent event,
@@ -29,15 +31,19 @@ class Game extends FlameGame with KeyboardEvents {
 
     if (keysPressed.contains(LogicalKeyboardKey.arrowDown)) {
       currentLogAnimation = walkDownAnimation;
+      position.add(Vector2(0, 1));
     }
     if (keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
       currentLogAnimation = walkUpAnimation;
+      position.add(Vector2(0, -1));
     }
     if (keysPressed.contains(LogicalKeyboardKey.arrowRight)) {
       currentLogAnimation = walkRightAnimation;
+      position.add(Vector2(1, 0));
     }
     if (keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
       currentLogAnimation = walkLeftAnimation;
+      position.add(Vector2(-1, 0));
     }
 
     return KeyEventResult.handled;
@@ -45,6 +51,8 @@ class Game extends FlameGame with KeyboardEvents {
 
   @override
   Future<void> onLoad() async {
+    position = Vector2.all(0.0);
+
     final logImage = await images.load('log.png');
     logSprite = Sprite(
       logImage,
@@ -79,6 +87,8 @@ class Game extends FlameGame with KeyboardEvents {
 
     // @todo continuar daqui https://docs.flame-engine.org/1.5.0/flame/rendering/images.html
     //logSprite.render(c);
-    currentLogAnimation.getSprite().render(c);
+    currentLogAnimation
+        .getSprite()
+        .render(c, position: position, size: Vector2.all(128.0));
   }
 }
