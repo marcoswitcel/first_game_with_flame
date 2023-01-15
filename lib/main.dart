@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flame/components.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
@@ -20,31 +22,24 @@ class Game extends FlameGame with KeyboardEvents {
 
   late Vector2 position;
 
+  final Map<LogicalKeyboardKey, bool> keysState = HashMap();
+
   @override
   KeyEventResult onKeyEvent(
     RawKeyEvent event,
     Set<LogicalKeyboardKey> keysPressed,
   ) {
-    final isKeyDown = event is RawKeyDownEvent;
+    assert(event is RawKeyDownEvent || event is RawKeyUpEvent,
+        'Evento é sempre de um desses dois tipos');
 
-    if (!isKeyDown) return KeyEventResult.handled;
-
-    if (keysPressed.contains(LogicalKeyboardKey.arrowDown)) {
-      currentLogAnimation = walkDownAnimation;
-      position.add(Vector2(0, 1));
-    }
-    if (keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
-      currentLogAnimation = walkUpAnimation;
-      position.add(Vector2(0, -1));
-    }
-    if (keysPressed.contains(LogicalKeyboardKey.arrowRight)) {
-      currentLogAnimation = walkRightAnimation;
-      position.add(Vector2(1, 0));
-    }
-    if (keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
-      currentLogAnimation = walkLeftAnimation;
-      position.add(Vector2(-1, 0));
-    }
+    keysState[LogicalKeyboardKey.arrowDown] =
+        keysPressed.contains(LogicalKeyboardKey.arrowDown);
+    keysState[LogicalKeyboardKey.arrowUp] =
+        keysPressed.contains(LogicalKeyboardKey.arrowUp);
+    keysState[LogicalKeyboardKey.arrowRight] =
+        keysPressed.contains(LogicalKeyboardKey.arrowRight);
+    keysState[LogicalKeyboardKey.arrowLeft] =
+        keysPressed.contains(LogicalKeyboardKey.arrowLeft);
 
     return KeyEventResult.handled;
   }
@@ -78,6 +73,7 @@ class Game extends FlameGame with KeyboardEvents {
   @override
   void update(double dt) {
     super.update(dt);
+    inputProcessing();
     currentLogAnimation.update(dt);
   }
 
@@ -90,5 +86,24 @@ class Game extends FlameGame with KeyboardEvents {
     currentLogAnimation
         .getSprite()
         .render(c, position: position, size: Vector2.all(128.0));
+  }
+
+  void inputProcessing() {
+    if (keysState[LogicalKeyboardKey.arrowDown] == true) {
+      currentLogAnimation = walkDownAnimation;
+      position.add(Vector2(0, 1));
+    }
+    if (keysState[LogicalKeyboardKey.arrowUp] == true) {
+      currentLogAnimation = walkUpAnimation;
+      position.add(Vector2(0, -1));
+    }
+    if (keysState[LogicalKeyboardKey.arrowRight] == true) {
+      currentLogAnimation = walkRightAnimation;
+      position.add(Vector2(1, 0));
+    }
+    if (keysState[LogicalKeyboardKey.arrowLeft] == true) {
+      currentLogAnimation = walkLeftAnimation;
+      position.add(Vector2(-1, 0));
+    }
   }
 }
