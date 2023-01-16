@@ -9,3 +9,7 @@ Este repositório é um projeto em andamento com o foco em aprender os conceitos
 * [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 * [https://docs.flame-engine.org/1.5.0/tutorials/bare_flame_game.html](https://docs.flame-engine.org/1.5.0/tutorials/bare_flame_game.html)
 * [https://docs.flame-engine.org/1.5.0/flame/rendering/images.html](https://docs.flame-engine.org/1.5.0/flame/rendering/images.html)
+
+* Créditos
+
+* Assets encontrados aqui: [https://opengameart.org/content/zelda-like-tilesets-and-sprites](https://opengameart.org/content/zelda-like-tilesets-and-sprites)

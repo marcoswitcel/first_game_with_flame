@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 
 class OpenWorldScene extends FlameGame with KeyboardEvents {
   late Sprite logSprite;
+  late Sprite backgroundSprite;
   late SpriteAnimation currentLogAnimation;
 
   late SpriteAnimation walkDownAnimation;
@@ -64,6 +65,13 @@ class OpenWorldScene extends FlameGame with KeyboardEvents {
         row: 3, stepTime: 0.1, loop: true, from: 0, to: 4);
 
     currentLogAnimation = walkDownAnimation;
+
+    final background = await images.load('overworld.png');
+    backgroundSprite = Sprite(
+      background,
+      srcPosition: Vector2(0.0, 0),
+      srcSize: Vector2(16.0, 16.0),
+    );
   }
 
   @override
@@ -76,6 +84,8 @@ class OpenWorldScene extends FlameGame with KeyboardEvents {
   @override
   void render(Canvas c) {
     super.render(c);
+
+    backgroundSprite.render(c, size: Vector2.all(128.0));
 
     // @todo continuar daqui https://docs.flame-engine.org/1.5.0/flame/rendering/images.html
     //logSprite.render(c);
